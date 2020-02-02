@@ -1,0 +1,14 @@
+#Script by : Rachit Agarwal [ https://github.com/Rachit005 ]
+The Online retail.R is a R script to create a Linear Regression Model to predict the Purchase Made based on the data provided.
+
+The dataset contains 325 data points collected from a ecommerce website. 
+
+Attribute Information:
+
+Features consist of the following variables
+- Age 
+- Job Type - Employed, Unemployed, Retired, Student
+- Maritial Status  - Yes, No
+- Education - Graduate, Secondry, Primary
+- Metro City - Yes, No
+- Signed in since(Days) -  Last user logged in on the website.

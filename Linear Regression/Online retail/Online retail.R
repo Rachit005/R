@@ -1,6 +1,4 @@
-getwd()
-setwd("D:/RAC_IMARTICUS/R")
-
+#Reading the CSV file
 Data = read.csv("Regression.csv")
 
 summary(Data)
@@ -39,7 +37,7 @@ final_data = Data[-c(2,3,4,5)]
 
 head(final_data)
 
-#Include randomness
+#To get the dame output everytime when you run the code
 set.seed(56952)
 
 #Box plot
@@ -79,12 +77,13 @@ library(car)
 
 scatterplot(final_data$Age,final_data$Purchase.made)
 
+#Correlation between the variables
 cor(final_data)
 
+#Dividing the data in training and testing
 t1=sample(1:nrow(final_data),0.8*nrow(final_data))
 t_train1=final_data[t1,]
 t_test1=final_data[-t1,]
-
 
 
 #checking multicolinearity
@@ -92,43 +91,37 @@ d1 = lm(Purchase.made~.,data = t_train1)
 summary(d1)
 vif(d1)
 
+#since vif value of the some columns in d1 is greater then 5
+#so we are creating the another model excluding those columns
 d2 = lm(Purchase.made~ Age + Signed.in.since.Days. + Marital.Status_yes + Metro.City_yes, data = t_train1)
 summary(d2)
 vif(d2)
 
+#Now in d2 value of the all columns in d2 are less than 5
+#But p-value of Age column in greater than 5%
+#So creating the 3rd model excluding the Age
 d3 = lm(Purchase.made~Signed.in.since.Days. + Marital.Status_yes + Metro.City_yes, data = t_train1)
 summary(d3)
 vif(d3)
 
-
 head(t_test1)
 
-a = data.frame(Signed.in.since.Days. = 48 , Marital.Status_yes = 0,Metro.City_yes = 0)
-re = predict(d3,a)
-re
-
+#Making prediction on the Test data using d3 model
 prediction = predict(d3,t_test1)
 head(prediction)
 
-prediction
+#Binding the Prediction to the test data
 output = cbind(t_test1,prediction)
+
+#Removing the columns which are not required 
 final_output = output[-c(1,2,4:10)]
 head(final_output)
 
 #install.packages("DMwR")
 library(DMwR)
+
+#To check the MAE, MSE, RMSE, MAPE Value 
 regr.eval(final_output$Purchase.made,final_output$prediction)
-AIC(d3)
-cor(final_output$Purchase.made,final_output$prediction)
 
-min_max_accuracy <- mean(apply(final_output, 1, min) / apply(final_output, 1, max))  
-min_max_accuracy
-
-mape <- mean(abs((final_output$prediction - final_output$Purchase.made))/final_output$Purchase.made)  
-mape
-
-durbinWatsonTest(d3)
-
-plot(final_output$Purchase.made, residuals(d3))
-
-
+#Using Plot checking for the linearity between Actual Value and the Predicted Value
+plot(final_output$Purchase.made,final_output$prediction)
