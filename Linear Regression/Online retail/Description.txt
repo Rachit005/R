@@ -11,4 +11,4 @@ Features consist of the following variables
 - Maritial Status  - Yes, No
 - Education - Graduate, Secondry, Primary
 - Metro City - Yes, No
-- Signed in since(Days) -  Last user logged in on the website.
+- Signed in since(Days) -  No of days since the first login of the user
