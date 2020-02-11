@@ -169,7 +169,7 @@ vif(model1)
 s = step(model1)
 summary(s)
 
-#new model with the required columns based on the s
+#new model with the required columns based on the step function output
 new_m = glm(y ~ balance + campaign + job_admin + job_m + job_r + jobs_stu + 
                job_t + job_un + marital_m + marital_s + education_p + education_t + 
                housing_y + loan_n + poutcome_f + poutcome_o + poutcome_u, family = "binomial", data = train)
