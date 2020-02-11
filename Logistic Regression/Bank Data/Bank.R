@@ -30,7 +30,7 @@ d$age = ifelse(d$age > 70,70,d$age)
 boxplot(d$age)
 
 
-#checking for outliers in age column
+#checking for outliers in balance column
 par(mfrow=c(1,2))
 boxplot(d$balance)
 quantile(d$balance,seq(0,1,0.01))
@@ -53,11 +53,10 @@ d$campaign = ifelse(d$campaign > 8,8,d$campaign)
 
 boxplot(d$campaign)
 
-library(caret)
 set.seed(9)
 
 
-#checking for count for ditinct levels in job
+#checking for count for distinct levels in job
 summary(d$job)
 
 #converting them to numeric
@@ -79,7 +78,7 @@ d = d[-2]
 head(d)
 
 
-#checking for count for ditinct levels in marital
+#checking for count for distinct levels in marital
 summary(d$marital)
 
 #converting them to numeric
@@ -92,7 +91,7 @@ d = d[-2]
 head(d)
 
 
-#checking for count for ditinct levels in education
+#checking for count for distinct levels in education
 summary(d$education)
 
 #converting them to numeric
@@ -106,7 +105,7 @@ d = d[-2]
 head(d)
 
 
-#checking for count for ditinct levels in default
+#checking for count for distinct levels in default
 summary(d$default)
 
 #converting them to numeric
@@ -117,7 +116,7 @@ d = d[-2]
 
 head(d)
 
-#checking for count for ditinct levels in housing
+#checking for count for distinct levels in housing
 summary(d$housing)
 
 #converting them to numeric
@@ -129,7 +128,7 @@ d = d[-3]
 head(d)
 
 
-#checking for count for ditinct levels in loan
+#checking for count for distinct levels in loan
 summary(d$loan)
 
 #converting them to numeric
@@ -141,7 +140,7 @@ d = d[-3]
 head(d)
 
 
-#checking for count for ditinct levels in loan
+#checking for count for distinct levels in poutcome
 summary(d$poutcome)
 
 #converting them to numeric
